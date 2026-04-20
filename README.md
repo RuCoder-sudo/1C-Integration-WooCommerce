@@ -1,223 +1,233 @@
 # 1C-Integration-WooCommerce
-1C-Integration-WooCommerce - Интеграция WooCommerce 1С:Предприятие
 
-<p align="center"> <img src="assets/banner.png" alt="1C-Integration-WooCommerce — синхронизация товаров, заказов и остатков"> </p>
+<div align="center">
 
-1C-Integration-WooCommerce - это плагин для WordPress, который обеспечивает полноценный обмен данными между вашим интернет-магазином на WooCommerce и учётными системами: 1С:Предприятие 8, СБИС и МойСклад. Гибкие настройки позволяют адаптировать синхронизацию под любые бизнес-сценарии.
+![Version](https://img.shields.io/badge/version-1.0.0-blue?style=flat-square)
+![WordPress](https://img.shields.io/badge/WordPress-5.8%2B-21759b?style=flat-square&logo=wordpress)
+![WooCommerce](https://img.shields.io/badge/WooCommerce-4.0%2B-96588a?style=flat-square)
+![PHP](https://img.shields.io/badge/PHP-7.4%2B-777bb4?style=flat-square&logo=php)
+![License](https://img.shields.io/badge/license-GPLv2-green?style=flat-square)
 
-🚀 Основные возможности
-📦 Синхронизация каталога товаров
-Выгрузка групп товаров (категорий) с учётом вложенности.
+**Полная интеграция WooCommerce с 1С:Предприятие, СБИС и МойСклад**
 
-Синхронизация товаров и вариаций (характеристик).
+[Получить лицензию](https://рукодер.рф) · [Документация](#установка) · [Поддержка](#поддержка) · [Changelog](#changelog)
 
-Импорт свойств товаров и их значений.
+</div>
 
-Загрузка изображений товаров и изображений для вариаций.
+---
 
-Синхронизация габаритов и веса товаров.
+## О плагине
 
-💰 Цены и остатки
-Загрузка нескольких типов цен из учётной системы.
+**1C-Integration-WooCommerce** реализует двусторонний обмен данными между интернет-магазином на WooCommerce и учётными системами на базе **1С:Предприятие 8**, **СБИС** и **МойСклад** по стандартному протоколу CML2/CML3.
 
-Поддержка базовой цены и цены распродажи.
+Плагин работает с **любой конфигурацией 1С**, поддерживающей обмен с сайтом: Управление торговлей, Розница, Комплексная автоматизация, ERP и другие.
 
-Синхронизация остатков товаров на складах.
+---
 
-Возможность выбора складов для учёта остатков.
+## Возможности
 
-📋 Обмен заказами
-Выгрузка заказов с сайта в учётную систему (1С, СБИС, МойСклад).
+### Импорт каталога из 1С → WooCommerce
 
-Поддержка real-time обмена заказами.
+| Функция | Описание |
+|---|---|
+| **Категории** | Создание и обновление категорий с вложенностью любого уровня |
+| **Атрибуты** | Импорт свойств товаров и их значений |
+| **Товары** | Создание/обновление: название, описание, SKU, статус |
+| **Изображения** | Загрузка и обновление изображений (только при изменении, по MD5-хешу) |
+| **Цены** | Базовая цена, цена распродажи, выбор типа цены из 1С |
+| **Остатки** | Синхронизация складских остатков, выбор складов |
+| **Полный / инкрементальный обмен** | Поддержка обоих режимов |
+| **ZIP-архивирование** | Ускорение передачи данных |
+| **Чанковая передача** | Обход ограничений хостинга на размер загрузки |
+| **Пошаговая обработка** | Работа на любом хостинге без риска таймаута |
 
-Изменение статуса заказов на сайте по данным из учётной системы.
+### Экспорт заказов WooCommerce → 1С
 
-Применение изменений в составе заказа по данным из учётной системы.
+| Функция | Описание |
+|---|---|
+| **Автоэкспорт** | Выгрузка заказов в XML при следующем сеансе обмена |
+| **Фильтр по статусам** | Настройка: какие статусы заказов выгружать |
+| **Эквайринг** | Генерация документа оплаты «ХозОперация: Эквайринговая операция» |
 
-🛠️ Гибкие настройки и технологии
-Простая настройка: Для базовой работы достаточно указать логин и пароль. У каждой настройки есть всплывающая подсказка.
+### Гибкие настройки
 
-Работа на любом хостинге: Пошаговая обработка данных и контроль времени выполнения скрипта позволяют использовать плагин даже на дешёвом shared-хостинге.
+- Отключение обновления любого поля (название, описание, SKU, категории, атрибуты, изображения, цены, остатки)
+- Поиск существующих товаров по SKU или по 1С-идентификатору
+- Поиск существующих категорий по названию
+- Настройка типов цен (базовая, распродажная, несколько типов)
+- Выбор складов для расчёта остатков
 
-Оптимизация ресурсов: Обновление товара происходит только при реальных изменениях, используется контроль по хешу содержимого.
+### Инструменты администратора
 
-Работа с архивами: Поддержка сжатых zip-архивов для ускорения передачи данных, особенно при большом количестве изображений.
+- **Тест подключения** — проверка конфигурации прямо из панели
+- **Диагностика** — PHP/WordPress/WooCommerce окружение
+- **Лог обмена** — с фильтрацией по уровню (инфо / успех / предупреждение / ошибка)
+- **Инструкции** — пошаговое руководство внутри плагина
 
-Управление частями файлов: Настройка размера части для обхода ограничений хостинга на максимальный размер передаваемых данных.
+---
 
-Интеллектуальный поиск: Поиск существующих товаров по артикулу или категорий по названию с вложенностью, чтобы избежать дублирования.
+## Поддерживаемые системы
 
-Логирование: Полная запись всех событий для отладки и мониторинга.
+| Система | Статус |
+|---|---|
+| 1С:Предприятие 8 (любая конфигурация с CML2/CML3) | ✅ Поддерживается |
+| СБИС | ✅ Поддерживается |
+| МойСклад | ✅ Поддерживается |
 
-⚙️ Совместимость
-Компонент	Поддержка
-WordPress	5.8 – 6.7
-PHP	7.4+
-WooCommerce	4.0+
-1С:Предприятие 8	✔️ (любые конфигурации с CML2/CML3)
-СБИС	✔️
-МойСклад	✔️
-📥 Установка
-Скачайте архив плагина или клонируйте репозиторий:
+---
 
-bash
-git clone https://github.com/RuCoder-sudo/1C-Integration-WooCommerce.git
-Загрузите папку 1C-Integration-WooCommerce в /wp-content/plugins/.
+## Требования
 
-Активируйте плагин через меню «Плагины» в WordPress.
+- **WordPress** 5.8 или выше
+- **WooCommerce** 4.0 или выше
+- **PHP** 7.4 или выше
+- PHP-расширения: `SimpleXML`, `mbstring`
+- PHP-расширение `ZipArchive` (рекомендуется, для поддержки ZIP)
 
-Перейдите в раздел WooCommerce → 1C Обмен данными.
+---
 
-Заполните базовые настройки:
+## Установка
 
-Придумайте и введите Пользователь и Пароль (будут использоваться для авторизации узла обмена в 1С).
+### Способ 1: через панель WordPress
 
-Отметьте чекбокс «Включить обмен».
+1. Загрузите [ZIP-архив плагина](https://рукодер.рф)
+2. Перейдите в **Плагины → Добавить новый → Загрузить плагин**
+3. Выберите файл `1c-integration-woocommerce.zip` и нажмите **Установить**
+4. Нажмите **Активировать плагин**
 
-Сохраните настройки. Адрес, пользователь и пароль теперь можно использовать при настройке узла обмена в вашей учётной системе.
+### Способ 2: через FTP
 
-💡 Совет: Перед настройкой на боевом сайте протестируйте процесс синхронизации на тестовом сайте.
+1. Распакуйте архив в папку `wp-content/plugins/1c-integration-woocommerce/`
+2. Активируйте плагин в **Плагины → Установленные плагины**
 
-❓ Часто задаваемые вопросы
-Где взять адрес для настройки узла обмена в 1С?
-После включения плагина и сохранения настроек в разделе WooCommerce → 1C Обмен данными, используйте URL вашего сайта. Более подробная информация об адресах будет доступна в интерфейсе плагина.
+---
 
-Как узнать, какие типы цен выгружаются?
-Типы цен автоматически заполнятся при первом успешном обмене. После этого вы сможете выбрать, какой тип цен использовать на сайте как базовый.
+## Активация лицензии
 
-Работает ли плагин на дешёвом хостинге?
-Да. Плагин использует пошаговую обработку данных, что позволяет работать даже в условиях ограниченных лимитов shared-хостинга.
+После установки:
 
-Можно ли отключить синхронизацию определённых данных?
-Да. В настройках плагина можно гибко отключить запись или обновление отдельных типов данных (например, категорий, свойств, изображений).
+1. Перейдите в **1C Integration → Активация**
+2. Введите лицензионный ключ (формат `WC1C-XXXX-XXXX-XXXX-XXXX`)
+3. Нажмите **Активировать**
 
-Поддерживает ли плагин облачные конфигурации 1С?
-Да, плагин работает с любой конфигурацией (облачной и нет), которая поддерживает стандарт обмена CML2/CML3.
+Если у вас нет ключа — заполните форму «Запросить лицензионный ключ» прямо на странице активации.
 
-🧪 Статус проекта
-✅ Стабильная работа на WordPress 6.7
-✅ Проверено с PHP 8.0 – 8.3
-✅ Все функции протестированы
-✅ Готов к использованию в продакшене
+---
 
-📌 Лицензия
-GPL v2 or later
-Полный текст лицензии: https://www.gnu.org/licenses/gpl-2.0.html
+## Настройка
 
-👨‍💻 Автор
-Sergey Soloshenko (RuCoder)
-🛠 WordPress / Full Stack разработчик
-📬 support@рукодер.рф
-📲 Telegram: @RussCoder
-🌐 https://рукодер.рф
+### 1. Настройки обмена
 
-1C-Integration-WooCommerce — WooCommerce Integration with 1C, SBIS, and MoySklad
-1C-Integration-WooCommerce is a WordPress plugin that provides a full data exchange between your WooCommerce store and accounting systems: 1C:Enterprise 8, SBIS, and MoySklad. Flexible settings allow you to adapt synchronization to any business scenario.
+Перейдите в **1C Integration → Настройки**:
 
-🚀 Key Features
-📦 Product Catalog Synchronization
-Export of product groups (categories) with nesting.
+- **Включить обмен** — активирует эндпоинт обмена
+- **Пользователь / Пароль** — учётные данные, которые нужно указать в 1С
+- **URL обмена** — адрес для настройки узла в 1С (отображается на странице настроек)
 
-Synchronization of products and variations (characteristics).
+### 2. Настройка в 1С:Предприятие 8
 
-Import of product properties and their values.
+1. Откройте **НСИ и администрирование → Интеграция с другими программами → Обмен с сайтом**
+2. Создайте новый узел обмена
+3. В поле «Адрес» укажите URL из настроек плагина
+4. Введите пользователя и пароль
+5. Запустите тестовый обмен
 
-Upload of product images and images for variations.
+### 3. Настройка в СБИС
 
-Synchronization of product dimensions and weight.
+Подробнее: [https://sbis.ru/help/roz/stores/comm](https://sbis.ru/help/roz/stores/comm)
 
-💰 Prices and Stock Balances
-Upload of multiple price types from the accounting system.
+### 4. Настройка в МойСклад
 
-Support for regular price and sale price.
+Подробнее: [https://support.moysklad.ru/hc/ru/articles/4416274519953](https://support.moysklad.ru/hc/ru/articles/4416274519953)
 
-Synchronization of stock balances across warehouses.
+---
 
-Ability to select which warehouses to consider for stock.
+## Структура проекта
 
-📋 Order Exchange
-Upload of orders from the site to the accounting system (1C, SBIS, MoySklad).
+```
+1c-integration-woocommerce/
+├── 1c-integration-woocommerce.php   # Главный файл плагина
+├── uninstall.php                    # Очистка при удалении плагина
+├── readme.txt                       # Описание для WordPress.org (GPL)
+├── admin/
+│   ├── class-wc1c-admin.php         # Меню, настройки, обработчики форм
+│   ├── admin.css                    # Стили административной панели
+│   ├── admin.js                     # JavaScript интерфейса
+│   └── views/
+│       ├── activation.php           # Страница активации
+│       ├── settings.php             # Страница настроек
+│       ├── catalog.php              # Страница «Каталог»
+│       ├── test.php                 # Тест подключения
+│       ├── logs.php                 # Лог обмена
+│       └── help.php                 # Инструкции
+└── includes/
+    ├── class-wc1c-exchange.php      # Протокол обмена (checkauth/init/file/import/query)
+    ├── class-wc1c-importer.php      # Разбор XML, создание/обновление товаров
+    ├── class-wc1c-license.php       # Активация и проверка лицензии
+    └── class-wc1c-logger.php        # Система логирования
 
-Real-time order exchange support.
+rucoder-license-manager/
+├── rucoder-license-manager.php      # Главный файл плагина лицензий
+├── uninstall.php                    # Очистка при удалении
+└── includes/
+    ├── class-rclm-api.php           # REST API (activate/deactivate/check)
+    ├── class-rclm-dashboard.php     # Панель управления ключами
+    └── class-rclm-mailer.php        # Отправка email
+```
 
-Order status change on the site based on data from the accounting system.
+---
 
-Application of changes to the order composition based on data from the accounting system.
+## Плагин менеджера лицензий (RuCoder License Manager)
 
-🛠️ Flexible Settings & Technologies
-Simple Setup: Basic operation requires only a login and password. Each setting has a tooltip.
+В репозитории также находится плагин **RuCoder License Manager**, устанавливаемый на сайте [рукодер.рф](https://рукодер.рф).
 
-Works on Any Hosting: Step-by-step data processing and script execution time control allow the plugin to work even on cheap shared hosting.
+Возможности:
+- Генерация и отзыв лицензионных ключей
+- Статистика активаций
+- REST API для удалённой проверки и активации
+- Обработка входящих запросов от клиентов
+- Автоматическая отправка ключей по email
 
-Resource Optimization: Product updates occur only when there are real changes; content hash control is used.
+---
 
-Archive Support: Support for compressed zip archives to speed up data transfer, especially with many images.
+## Поддержка
 
-File Part Management: Configurable file part size to bypass hosting limits on maximum data transfer size.
+| Канал | Контакт |
+|---|---|
+| Telegram | [@RussCoder](https://t.me/RussCoder) |
+| Телефон | +7 (985) 985-53-97 |
+| Email | rucoder.rf@yandex.ru |
+| Сайт | [рукодер.рф](https://рукодер.рф) |
 
-Smart Search: Search for existing products by SKU or categories by name with nesting to avoid duplication.
+---
 
-Logging: Full logging of all events for debugging and monitoring.
+## Changelog
 
-⚙️ Compatibility
-Component	Support
-WordPress	5.8 – 6.7
-PHP	7.4+
-WooCommerce	4.0+
-1C:Enterprise 8	✔️ (any configuration with CML2/CML3)
-SBIS	✔️
-MoySklad	✔️
-📥 Installation
-Download the plugin archive or clone the repository:
+### 1.0.0 — 2025-04-20
 
-bash
-git clone https://github.com/RuCoder-sudo/1C-Integration-WooCommerce.git
-Upload the 1C-Integration-WooCommerce folder to /wp-content/plugins/.
+- Первый публичный релиз
+- Полная реализация протокола CML2/CML3 для обмена каталогом и заказами
+- Загрузка и обновление категорий, атрибутов, товаров, изображений, цен, остатков
+- Выгрузка заказов WooCommerce в 1С
+- Поддержка ZIP-архивирования и передачи по частям
+- Поиск товаров по SKU и 1С-идентификатору
+- Поиск категорий по названию
+- Гибкие настройки: отключение обновления отдельных полей
+- Подробные логи обмена с фильтрацией по уровню
+- Тест подключения и диагностика окружения
+- Страница инструкций с пошаговым руководством
+- Система лицензирования с удалённой активацией
+- Красивая русскоязычная административная панель
+- Поддержка 1С, СБИС, МойСклад
 
-Activate the plugin via the "Plugins" menu in WordPress.
+---
 
-Go to WooCommerce → 1C Data Exchange.
+## Лицензия
 
-Configure the basic settings:
+Плагин распространяется под лицензией [GPL-2.0+](https://www.gnu.org/licenses/gpl-2.0.html).
 
-Create and enter a Username and Password (will be used for exchange node authorization in 1C).
+---
 
-Check the "Enable Exchange" checkbox.
-
-Save the settings. The URL, username, and password can now be used when configuring the exchange node in your accounting system.
-
-💡 Tip: Before configuring on your production site, test the synchronization process on a staging site.
-
-❓ FAQ
-Where can I get the URL for setting up the exchange node in 1C?
-After enabling the plugin and saving the settings in the WooCommerce → 1C Data Exchange section, use your site's URL. More detailed information about the URLs will be available in the plugin interface.
-
-How do I know which price types are being uploaded?
-Price types will be automatically populated during the first successful exchange. After that, you can select which price type to use as the base price on the site.
-
-Does the plugin work on cheap hosting?
-Yes. The plugin uses step-by-step data processing, allowing it to work even under the limited resources of shared hosting.
-
-Can I disable the synchronization of certain data?
-Yes. The plugin settings allow you to flexibly disable the recording or updating of specific data types (e.g., categories, properties, images).
-
-Does the plugin support cloud-based 1C configurations?
-Yes, the plugin works with any configuration (cloud-based or on-premise) that supports the CML2/CML3 exchange standard.
-
-🧪 Project Status
-✅ Stable with WordPress 6.7
-✅ Tested with PHP 8.0 – 8.3
-✅ All features tested
-✅ Production-ready
-
-📌 License
-GPL v2 or later
-Full license: https://www.gnu.org/licenses/gpl-2.0.html
-
-👨‍💻 Author
-Sergey Soloshenko (RuCoder)
-🛠 WordPress / Full Stack Developer
-📬 support@рукодер.рф
-📲 Telegram: @RussCoder
-🌐 https://рукодер.рф
+<div align="center">
+Разработано с ❤️ — <a href="https://рукодер.рф">РуКодер</a> · Сергей Солошенко
+</div>
