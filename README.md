@@ -163,7 +163,6 @@
 └── includes/
     ├── class-wc1c-exchange.php      # Протокол обмена (checkauth/init/file/import/query)
     ├── class-wc1c-importer.php      # Разбор XML, создание/обновление товаров
-    ├── class-wc1c-license.php       # Активация и проверка лицензии
     └── class-wc1c-logger.php        # Система логирования
 
 rucoder-license-manager/
@@ -171,8 +170,7 @@ rucoder-license-manager/
 ├── uninstall.php                    # Очистка при удалении
 └── includes/
     ├── class-rclm-api.php           # REST API (activate/deactivate/check)
-    ├── class-rclm-dashboard.php     # Панель управления ключами
-    └── class-rclm-mailer.php        # Отправка email
+
 ```
 
 ---
